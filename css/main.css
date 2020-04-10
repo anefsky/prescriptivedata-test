@@ -1,0 +1,19 @@
+.row {
+    display: flex;
+}
+
+.cell {
+    height: 16px;
+    width: 16px;
+    border: 1px solid #eee;
+    margin: 1px;
+}
+
+.snake-cell {
+    background-color: green;
+}
+
+.food-cell {
+    background-color: red;
+    border-radius: 8px;
+}
