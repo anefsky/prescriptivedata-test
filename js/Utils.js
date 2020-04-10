@@ -24,10 +24,6 @@ export default class Utils {
     }
     
     static getNextSnakeHead(snakeCells, direction) {
-
-        console.log('snakeCells: ', snakeCells);
-        console.log('direction: ', direction);
-
         const head = snakeCells[0];
         let newHead;
         switch(direction) {
@@ -64,18 +60,9 @@ export default class Utils {
             || head.col < 0 || head.col > numCols - 1;
     }
     
-    static isFoodEaten(snakeHead, foodCell) {
-
-
-        console.log('snakeHead: ', snakeHead);
-        console.log('foodCell: ', foodCell);
-
-        return Utils.isSameCell(snakeHead, foodCell);
-    }
-    
     static isSameCell(first, second) {
-        return first.row === second.row &&
-            second.col === second.col;
+       return first.row === second.row &&
+            first.col === second.col;
     }
 
   }

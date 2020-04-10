@@ -8,7 +8,7 @@ const grid = new Grid();
 const model = new Model(initNumRows, initNumCols);
 
 
-document.addEventListener('keydown', event => {  // can't get this to work
+document.addEventListener('keydown', event => {
       event.preventDefault();  // stop grid from repositioning
       const keyEventToActionMap = {
         ArrowUp: 'up',
@@ -35,4 +35,4 @@ const interval = setInterval( () => {
        clearInterval(interval);
    }
       
-}, 1000);
+}, 500);
