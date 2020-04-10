@@ -49,7 +49,7 @@ export default class Utils {
     }
     
     static growSnake(snakeCells, direction) {
-        let newHead = this.getNextSnakeHead(direction);
+        let newHead = this.getNextSnakeHead(snakeCells, direction);
         snakeCells.unshift(newHead);
         return snakeCells;
     }
