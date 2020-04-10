@@ -22,11 +22,11 @@ document.addEventListener('keydown', event => {  // can't get this to work
 
 model.startGame();
 const interval = setInterval( () => {
-//    if(model.nextMoveSnakeEats()) {
-//        model.growSnake();
-//    } else {
+   if(model.nextMoveSnakeEats()) {
+       model.growSnake();
+   } else {
         model.moveSnake();
-//    }
+   }
     
     grid.render(model.getNumRows(),  model.getNumCols(), 
                 model.getSnakeCells(), model.getFoodCell());

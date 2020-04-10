@@ -14,9 +14,9 @@ export default class Utils {
     }
 
     static isCellOnOtherCells(otherCells, cellToTest) {
-      for(let i = 0; i < snakeCells.length; i++) {
-          if(cellToTest.row === snakeCells[i].row &&
-                cellToTest.col === snakeCells[i]) {
+      for(let i = 0; i < otherCells.length; i++) {
+          if(cellToTest.row === otherCells[i].row &&
+                cellToTest.col === otherCells[i]) {
               return true;
           }
       }
@@ -24,6 +24,10 @@ export default class Utils {
     }
     
     static getNextSnakeHead(snakeCells, direction) {
+
+        console.log('snakeCells: ', snakeCells);
+        console.log('direction: ', direction);
+
         const head = snakeCells[0];
         let newHead;
         switch(direction) {
@@ -61,6 +65,11 @@ export default class Utils {
     }
     
     static isFoodEaten(snakeHead, foodCell) {
+
+
+        console.log('snakeHead: ', snakeHead);
+        console.log('foodCell: ', foodCell);
+
         return Utils.isSameCell(snakeHead, foodCell);
     }
     

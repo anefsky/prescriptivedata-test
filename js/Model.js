@@ -20,6 +20,7 @@
     
     nextMoveSnakeEats() {
         this.setNextSnakeHead();
+        return Utils.isFoodEaten(this.nextSnakeHead, this.foodCell);
     }
     
     setDirection(direction) {
@@ -52,7 +53,9 @@
     }
     
     setNextSnakeHead() {
-        this.snakeHead = Utils.getNextSnakeHead();
+        this.nextSnakeHead = Utils.getNextSnakeHead(this.snakeCells, this.direction);
+
+        // console.log('in setNextSnakeHead, snakeHead: ', this.snakeHead);
     }
     
     isGameOver() {
@@ -61,7 +64,7 @@
     }
     
     isFoodEaten() {
-        return Utils.isFoodEaten(this.snakeCells, this.foodCell)
+        return Utils.isFoodEaten(this.nextSnakeHead, this.foodCell)
     }
     
     getNumRows() { return this.numRows; }
