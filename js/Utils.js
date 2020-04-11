@@ -2,7 +2,7 @@ export default class Utils {
     static isSnakeEatingItself(snakeCells) {
         if (snakeCells.length === 1) return false;
         const head = snakeCells[0];
-        const body = snakeCells.slice(1, snakeCells.length);
+        const body = snakeCells.slice(1);
         return Utils.isCellOnOtherCells(body, head);
     }
 
@@ -16,7 +16,7 @@ export default class Utils {
     static isCellOnOtherCells(otherCells, cellToTest) {
         for (let i = 0; i < otherCells.length; i++) {
             if (cellToTest.row === otherCells[i].row &&
-                cellToTest.col === otherCells[i]) {
+                cellToTest.col === otherCells[i].col) {
                 return true;
             }
         }
@@ -63,6 +63,26 @@ export default class Utils {
     static isSameCell(first, second) {
         return first.row === second.row &&
             first.col === second.col;
+    }
+
+    static getRandomItemFromArray(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    static getRandomNumInRange(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    static getCellAwayFromEdges(numRows, numCols) {  // start at middle 2/3 of board
+        const minRow = Math.floor(numRows * .33);
+        const maxRow = Math.floor(numRows * .67);
+        const minCol = Math.floor(numCols * .33);
+        const maxCol = Math.floor(numCols * .67);
+
+        return {
+            row: Utils.getRandomNumInRange(minRow, maxRow),
+            col: Utils.getRandomNumInRange(minCol, maxCol)
+        }
     }
 
 }

@@ -10,12 +10,8 @@ export default class Model {
     direction;
 
     constructor(numRows, numCols) {
-        this.snakeCells = [];
         this.numRows = numRows;
         this.numCols = numCols;
-        const directions = ['up', 'down', 'left', 'right'];
-        this.direction = directions[Math.floor(Math.random() * directions.length)];
-
     }
 
     nextMoveSnakeEats() {
@@ -27,9 +23,32 @@ export default class Model {
         this.direction = direction;
     }
 
+    placeFirstSnakeCell() {
+        this.snakeCells.push(Utils.getCellAwayFromEdges(this.numRows, this.numCols));
+    }
+
+    placeFoodCell() {  // cannot be on a snake cell
+        let onSnakeCell = true;
+        let randomCell;
+        while(onSnakeCell) {
+            randomCell = Utils.getRandomCell(this.numRows, this.numCols);
+            if(!Utils.isCellOnOtherCells(this.snakeCells, randomCell)) {
+                onSnakeCell = false;
+            }
+        }
+        this.foodCell = randomCell;
+    }
+
+    moveFoodCell() {
+        this.placeFoodCell();
+    }
+
     startGame() {
-        this.snakeCells.push(Utils.getRandomCell(this.numRows, this.numCols));
-        this.foodCell = Utils.getRandomCell(this.numRows, this.numCols);
+        this.snakeCells = [];        
+        this.placeFirstSnakeCell();
+        this.placeFoodCell();
+        const directions = ['up', 'down', 'left', 'right'];
+        this.direction = Utils.getRandomItemFromArray(directions);
     }
 
     isGameOver() {
@@ -60,10 +79,6 @@ export default class Model {
         return Utils.isHeadOffGrid(this.snakeCells, this.numRows, this.numCols)
             || Utils.isSnakeEatingItself(this.snakeCells);
     }
-
-    // isFoodEaten() {
-    //     return Utils.isFoodEaten(this.nextSnakeHead, this.foodCell)
-    // }
 
     getNumRows() { return this.numRows; }
     getNumCols() { return this.numCols; }

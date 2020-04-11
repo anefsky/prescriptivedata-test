@@ -19,11 +19,11 @@ document.addEventListener('keydown', event => {
   model.setDirection(keyEventToActionMap[event.key]);
 });
 
-
 model.startGame();
+
 const interval = setInterval(() => {
   if (model.nextMoveSnakeEats()) {
-
+    model.moveFoodCell();
     model.growSnake();
   } else {
     model.moveSnake();
@@ -36,4 +36,4 @@ const interval = setInterval(() => {
     clearInterval(interval);
   }
 
-}, 500);
+}, 250);
