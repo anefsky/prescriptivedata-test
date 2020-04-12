@@ -36,8 +36,8 @@ function startGame() {
   snakeInterval = setInterval(() => {
     if (model.nextMoveSnakeEats()) {
       restartFoodInterval();
-      model.moveFoodCell();
       model.growSnake();
+      model.moveFoodCell();
     } else {
       model.moveSnake();
     }

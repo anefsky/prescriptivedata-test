@@ -1,5 +1,5 @@
 #container {
-    margin-left: 25px;
+    margin: 50px;
 }
 
 .row {
@@ -19,11 +19,12 @@
 
 .food-cell {
     background-color: red;
-    border-radius: 8px;
+    border-color: transparent;
+    transform: rotate(45deg) scale(0.7);
 }
 
 #btn-start-game {
-    margin:  25px 0;
+    margin-bottom: 50px;
     cursor: pointer;
 }
 
@@ -33,7 +34,7 @@
 
 .score-num {
     display: inline-block;
-    margin-top: 25px;
+    margin-top: 50px;
     margin-left: 10px;
     padding: 5px 10px;
     color: white;
