@@ -21,3 +21,12 @@
     background-color: red;
     border-radius: 8px;
 }
+
+#btn-start-game {
+    margin:  25px 0;
+    cursor: pointer;
+}
+
+#score {
+    font-size: 16px;
+}

@@ -1,6 +1,6 @@
 export default class Grid {
 
-    render(numRows, numCols, snakeCells, foodCell) {
+    static render(numRows, numCols, snakeCells, foodCell) {
         const gridElem = document.getElementById('grid');
         const gridRows = numRows;
         const gridCols = numCols;

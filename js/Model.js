@@ -12,6 +12,25 @@ export default class Model {
     constructor(numRows, numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
+
+        this.setArrowKeysHandler();
+    }
+
+    setArrowKeysHandler() {
+        document.addEventListener('keydown', event => {
+            event.preventDefault();  // stop grid from repositioning
+            const keyEventToActionMap = {
+              ArrowUp: 'up',
+              ArrowDown: 'down',
+              ArrowLeft: 'left',
+              ArrowRight: 'right'
+            }
+            this.setDirection(keyEventToActionMap[event.key]);
+        });
+    }
+
+    getScore() {
+        return this.snakeCells.length;
     }
 
     nextMoveSnakeEats() {

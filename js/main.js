@@ -3,37 +3,57 @@ import Model from './Model.js';
 
 const initNumRows = 10;
 const initNumCols = 10;
+let interval;
 
-const grid = new Grid();
 const model = new Model(initNumRows, initNumCols);
 
+const scoreColors = ['red', 'green', 'blue'];
+let scoreColorIdx = 0;
 
-document.addEventListener('keydown', event => {
-  event.preventDefault();  // stop grid from repositioning
-  const keyEventToActionMap = {
-    ArrowUp: 'up',
-    ArrowDown: 'down',
-    ArrowLeft: 'left',
-    ArrowRight: 'right'
-  }
-  model.setDirection(keyEventToActionMap[event.key]);
-});
+setStartButtonHandler();
 
-model.startGame();
+function setStartButtonHandler() {
+  const button = document.getElementById('btn-start-game');
+  button.addEventListener('click', doStartGame);
+}
 
-const interval = setInterval(() => {
-  if (model.nextMoveSnakeEats()) {
-    model.moveFoodCell();
-    model.growSnake();
-  } else {
-    model.moveSnake();
-  }
+function doStartGame() {
+  startGame();
+}
 
-  grid.render(model.getNumRows(), model.getNumCols(),
-    model.getSnakeCells(), model.getFoodCell());
+function startGame() {
+  model.startGame();
+  interval = setInterval(() => {
+    if (model.nextMoveSnakeEats()) {
+      model.moveFoodCell();
+      model.growSnake();
+    } else {
+      model.moveSnake();
+    }
+  
+    Grid.render(model.getNumRows(), model.getNumCols(),
+      model.getSnakeCells(), model.getFoodCell());
+  
+    if (model.isGameOver()) {
+      endGame();
+    }
+  
+  }, 250);
+}
 
-  if (model.isGameOver()) {
-    clearInterval(interval);
-  }
+function endGame() {
+  clearInterval(interval);
+  setButtonText('Play another game');
+  setScoreText();
+}
 
-}, 250);
+function setButtonText(str) {
+  document.getElementById('btn-start-game').innerHTML = str;
+}
+
+function setScoreText() {
+  scoreColorIdx = scoreColorIdx % scoreColors.length;
+  const color = scoreColors[scoreColorIdx++];
+  document.getElementById('score').innerHTML = "Score: " + 
+      '<span style="color: ' + color + ';">' + model.getScore() + '</span>';
+}
