@@ -30,7 +30,7 @@ export default class Model {
     }
 
     getScore() {
-        return this.snakeCells.length;
+        return this.snakeCells.length - 1;
     }
 
     nextMoveSnakeEats() {

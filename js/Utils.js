@@ -23,21 +23,12 @@ export default class Utils {
 
     static getNextArrayHead(arrCells, direction) {
         const head = arrCells[0];
-        let newHead;
         switch (direction) {
-            case ('up'):
-                newHead = { row: head.row - 1, col: head.col };
-                break;
-            case ('down'):
-                newHead = { row: head.row + 1, col: head.col };
-                break;
-            case ('left'):
-                newHead = { row: head.row, col: head.col - 1 };
-                break;
-            case ('right'):
-                newHead = { row: head.row, col: head.col + 1 };
-        }
-        return newHead;
+            case ('up'): return { row: head.row - 1, col: head.col };
+            case ('down'): return { row: head.row + 1, col: head.col };
+            case ('left'): return { row: head.row, col: head.col - 1 };
+            case ('right'): return { row: head.row, col: head.col + 1 };
+         }
     }
 
     static moveArrCellsForward(arrCells, direction) {

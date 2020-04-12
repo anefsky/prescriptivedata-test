@@ -54,6 +54,7 @@ function setButtonText(str) {
 function setScoreText() {
   scoreColorIdx = scoreColorIdx % scoreColors.length;
   const color = scoreColors[scoreColorIdx++];
-  document.getElementById('score').innerHTML = "Score: " + 
-      '<span style="color: ' + color + ';">' + model.getScore() + '</span>';
+  document.getElementById('score').innerHTML = "Score  " + 
+      '<span class="score-num" style="color: ' + 'white' + ';">'
+       + model.getScore() + '</span>';
 }
