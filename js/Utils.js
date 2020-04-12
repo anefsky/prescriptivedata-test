@@ -1,4 +1,5 @@
 export default class Utils {
+
     static isArrHeadOnBody(arrCells) {
         if (arrCells.length === 1) return false;
         const head = arrCells[0];
@@ -62,11 +63,11 @@ export default class Utils {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    static getCellAwayFromEdges(numRows, numCols) {  // start at middle 1/3 of board
-        const minRow = Math.floor(numRows * .33);
-        const maxRow = Math.floor(numRows * .67);
-        const minCol = Math.floor(numCols * .33);
-        const maxCol = Math.floor(numCols * .67);
+    static getCellAwayFromEdges(numRows, numCols, pctAreaToInclude) {
+        const minRow = Math.floor(numRows * (pctAreaToInclude / 100));
+        const maxRow = Math.floor(numRows * (1 - (pctAreaToInclude / 100)));
+        const minCol = Math.floor(numCols * (pctAreaToInclude / 100));
+        const maxCol = Math.floor(numCols * (1 - (pctAreaToInclude / 100)));
 
         return {
             row: Utils.getRandomNumInRange(minRow, maxRow),

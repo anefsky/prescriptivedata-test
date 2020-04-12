@@ -49,7 +49,9 @@ export default class Model {
     }
 
     placeFirstSnakeCell() {
-        this.snakeCells.push(Utils.getCellAwayFromEdges(this.numRows, this.numCols));
+        const percentBoardToExclude = 33;  // don't want to snake to start close to edge
+        this.snakeCells.push(Utils.getCellAwayFromEdges(this.numRows, this.numCols, 
+                percentBoardToExclude));
     }
 
     placeFoodCell() {  // cannot be on a snake cell

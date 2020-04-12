@@ -2,10 +2,6 @@
     margin-left: 25px;
 }
 
-#grid {
-    text-align: center;
-}
-
 .row {
     display: flex;
 }
