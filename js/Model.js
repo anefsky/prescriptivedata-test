@@ -27,9 +27,10 @@ export default class Model {
 
     setArrowKeysHandler() {
         document.addEventListener('keydown', event => {
-            event.preventDefault();  // stop grid from repositioning
-            const keyEventToActionMap = this.getKeyEventToActionMap();
-            this.setDirection(keyEventToActionMap[event.key]);
+            if(this.getKeyEventToActionMap()[event.key] !== undefined) {
+                event.preventDefault();  // stop grid from repositioning
+                this.setDirection(this.getKeyEventToActionMap()[event.key]);
+            }
         });
     }
 
@@ -70,7 +71,7 @@ export default class Model {
         this.snakeCells = [];        
         this.placeFirstSnakeCell();
         this.placeFoodCell();
-        const directions = ['up', 'down', 'left', 'right'];
+        const directions = Utils.getValuesFromObjectAsArray(this.getKeyEventToActionMap());
         this.direction = Utils.getRandomItemFromArray(directions);
     }
 

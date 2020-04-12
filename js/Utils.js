@@ -74,4 +74,9 @@ export default class Utils {
         }
     }
 
+    static getValuesFromObjectAsArray(obj) {
+        const values = [];
+        Object.keys(obj).forEach(x => values.push(obj[x]));
+        return values;
+    }
 }
