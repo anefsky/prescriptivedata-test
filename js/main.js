@@ -7,8 +7,9 @@ let interval;
 
 const model = new Model(initNumRows, initNumCols);
 
-const scoreColors = ['red', 'green', 'blue'];
+const scoreColors = ['blue', 'green', 'red'];
 let scoreColorIdx = 0;
+let prevScore = 0;
 
 setStartButtonHandler();
 
@@ -17,7 +18,12 @@ function setStartButtonHandler() {
   button.addEventListener('click', doStartGame);
 }
 
+function enableStartButton(doEnable) {
+  document.getElementById('btn-start-game').disabled = !doEnable;
+}
+
 function doStartGame() {
+  enableStartButton(false)
   startGame();
 }
 
@@ -45,6 +51,7 @@ function endGame() {
   clearInterval(interval);
   setButtonText('Play another game');
   setScoreText();
+  enableStartButton(true);
 }
 
 function setButtonText(str) {
@@ -52,9 +59,12 @@ function setButtonText(str) {
 }
 
 function setScoreText() {
+  const score = model.getScore();
+  if(score > prevScore) scoreColorIdx++;
   scoreColorIdx = scoreColorIdx % scoreColors.length;
-  const color = scoreColors[scoreColorIdx++];
+  const color = scoreColors[scoreColorIdx];
   document.getElementById('score').innerHTML = "Score  " + 
-      '<span class="score-num" style="color: ' + 'white' + ';">'
-       + model.getScore() + '</span>';
+      '<span class="score-num" style="background-color:' + 
+          color + '";>' + score + '</span>';
+  prevScore = score;
 }

@@ -16,15 +16,19 @@ export default class Model {
         this.setArrowKeysHandler();
     }
 
+    getKeyEventToActionMap() {
+        return {
+            ArrowUp: 'up',
+            ArrowDown: 'down',
+            ArrowLeft: 'left',
+            ArrowRight: 'right'
+        };
+    }
+
     setArrowKeysHandler() {
         document.addEventListener('keydown', event => {
             event.preventDefault();  // stop grid from repositioning
-            const keyEventToActionMap = {
-              ArrowUp: 'up',
-              ArrowDown: 'down',
-              ArrowLeft: 'left',
-              ArrowRight: 'right'
-            }
+            const keyEventToActionMap = this.getKeyEventToActionMap();
             this.setDirection(keyEventToActionMap[event.key]);
         });
     }
