@@ -3,13 +3,16 @@ import Model from './Model.js';
 
 const initNumRows = 10;
 const initNumCols = 10;
-let interval;
+let snakeInterval, foodInterval;
 
 const model = new Model(initNumRows, initNumCols);
 
 const scoreColors = ['blue', 'green', 'red'];
 let scoreColorIdx = 0;
 let prevScore = 0;
+const SNAKE_INTERVAL_MS = 250;
+const MIN_FOOD_INTERVAL_MS = 4000;
+const MAX_FOOD_INTERVAL_MS = 10000;
 
 setStartButtonHandler();
 
@@ -29,8 +32,10 @@ function doStartGame() {
 
 function startGame() {
   model.startGame();
-  interval = setInterval(() => {
+  startFoodInterval();
+  snakeInterval = setInterval(() => {
     if (model.nextMoveSnakeEats()) {
+      restartFoodInterval();
       model.moveFoodCell();
       model.growSnake();
     } else {
@@ -43,12 +48,24 @@ function startGame() {
     if (model.isGameOver()) {
       endGame();
     }
-  
-  }, 250);
+  }, SNAKE_INTERVAL_MS);
+}
+
+function startFoodInterval() {
+  foodInterval = setInterval(() => {
+    model.moveFoodCell();
+  }, Math.floor(Math.random() * 
+    (MAX_FOOD_INTERVAL_MS - MIN_FOOD_INTERVAL_MS)) + MIN_FOOD_INTERVAL_MS);
+}
+
+function restartFoodInterval() {
+  clearInterval(foodInterval);
+  startFoodInterval();
 }
 
 function endGame() {
-  clearInterval(interval);
+  clearInterval(snakeInterval);
+  clearInterval(foodInterval);
   setButtonText('Play another game');
   setScoreText();
   enableStartButton(true);

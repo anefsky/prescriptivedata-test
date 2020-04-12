@@ -29,7 +29,7 @@ export default class Model {
         document.addEventListener('keydown', event => {
             const direction = this.getKeyEventToActionMap()[event.key];
             if(direction) {
-                event.preventDefault();  // stop grid from repositioning
+                event.preventDefault();  // stop page from repositioning
                 this.setDirection(direction);
             }
         });
