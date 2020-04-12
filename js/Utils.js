@@ -63,11 +63,11 @@ export default class Utils {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    static getCellAwayFromEdges(numRows, numCols, pctAreaToInclude) {
-        const minRow = Math.floor(numRows * (pctAreaToInclude / 100));
-        const maxRow = Math.floor(numRows * (1 - (pctAreaToInclude / 100)));
-        const minCol = Math.floor(numCols * (pctAreaToInclude / 100));
-        const maxCol = Math.floor(numCols * (1 - (pctAreaToInclude / 100)));
+    static getCellAwayFromEdges(numRows, numCols, pctAreaToExclude) {
+        const minRow = Math.floor(numRows * (pctAreaToExclude / 100));
+        const maxRow = Math.floor(numRows * (1 - (pctAreaToExclude / 100)));
+        const minCol = Math.floor(numCols * (pctAreaToExclude / 100));
+        const maxCol = Math.floor(numCols * (1 - (pctAreaToExclude / 100)));
 
         return {
             row: Utils.getRandomNumInRange(minRow, maxRow),
