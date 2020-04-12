@@ -56,11 +56,11 @@ export default class Model {
     }
 
     growSnake() {
-        this.snakeCells = Utils.growSnake(this.snakeCells, this.direction);
+        this.snakeCells = Utils.growArrCellsForward(this.snakeCells, this.direction);
     }
 
     moveSnake() {
-        this.snakeCells = Utils.moveSnake(this.snakeCells, this.direction);
+        this.snakeCells = Utils.moveArrCellForward(this.snakeCells, this.direction);
     }
 
     getSnakeCells() {
@@ -72,7 +72,7 @@ export default class Model {
     }
 
     setNextSnakeHead() {
-        this.nextSnakeHead = Utils.getNextSnakeHead(this.snakeCells, this.direction);
+        this.nextSnakeHead = Utils.getNextArrayHead(this.snakeCells, this.direction);
     }
 
     isGameOver() {

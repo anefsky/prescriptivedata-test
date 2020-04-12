@@ -16,15 +16,13 @@ export default class Utils {
     static isCellOnOtherCells(otherCells, cellToTest) {
         for (let i = 0; i < otherCells.length; i++) {
             if (cellToTest.row === otherCells[i].row &&
-                cellToTest.col === otherCells[i].col) {
-                return true;
-            }
+                    cellToTest.col === otherCells[i].col) return true;
         }
         return false;
     }
 
-    static getNextSnakeHead(snakeCells, direction) {
-        const head = snakeCells[0];
+    static getNextArrayHead(arrCells, direction) {
+        const head = arrCells[0];
         let newHead;
         switch (direction) {
             case ('up'):
@@ -42,20 +40,20 @@ export default class Utils {
         return newHead;
     }
 
-    static moveSnake(snakeCells, direction) {
-        let snake = Utils.growSnake(snakeCells, direction);
-        snake.pop();  // remove last
-        return snake;
+    static moveArrCellForward(arrCells, direction) {
+        let grown = Utils.growArrCellsForward(arrCells, direction);
+        grown.pop();  // remove last
+        return grown;
     }
 
-    static growSnake(snakeCells, direction) {
-        let newHead = this.getNextSnakeHead(snakeCells, direction);
-        snakeCells.unshift(newHead);
-        return snakeCells;
+    static growArrCellsForward(arrCells, direction) {
+        let newHead = this.getNextArrayHead(arrCells, direction);
+        arrCells.unshift(newHead);
+        return arrCells;
     }
 
-    static isHeadOffGrid(snakeCells, numRows, numCols) {
-        const head = snakeCells[0];
+    static isHeadOffGrid(arrCells, numRows, numCols) {
+        const head = arrCells[0];
         return head.row < 0 || head.row > numRows - 1
             || head.col < 0 || head.col > numCols - 1;
     }
@@ -73,7 +71,7 @@ export default class Utils {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    static getCellAwayFromEdges(numRows, numCols) {  // start at middle 2/3 of board
+    static getCellAwayFromEdges(numRows, numCols) {  // start at middle 1/3 of board
         const minRow = Math.floor(numRows * .33);
         const maxRow = Math.floor(numRows * .67);
         const minCol = Math.floor(numCols * .33);
