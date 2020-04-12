@@ -60,7 +60,7 @@ export default class Model {
     }
 
     moveSnake() {
-        this.snakeCells = Utils.moveArrCellForward(this.snakeCells, this.direction);
+        this.snakeCells = Utils.moveArrCellsForward(this.snakeCells, this.direction);
     }
 
     getSnakeCells() {
@@ -77,7 +77,7 @@ export default class Model {
 
     isGameOver() {
         return Utils.isHeadOffGrid(this.snakeCells, this.numRows, this.numCols)
-            || Utils.isSnakeEatingItself(this.snakeCells);
+            || Utils.isArrHeadOnBody(this.snakeCells);
     }
 
     getNumRows() { return this.numRows; }

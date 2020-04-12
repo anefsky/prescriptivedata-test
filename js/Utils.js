@@ -1,8 +1,8 @@
 export default class Utils {
-    static isSnakeEatingItself(snakeCells) {
-        if (snakeCells.length === 1) return false;
-        const head = snakeCells[0];
-        const body = snakeCells.slice(1);
+    static isArrHeadOnBody(arrCells) {
+        if (arrCells.length === 1) return false;
+        const head = arrCells[0];
+        const body = arrCells.slice(1);
         return Utils.isCellOnOtherCells(body, head);
     }
 
@@ -40,7 +40,7 @@ export default class Utils {
         return newHead;
     }
 
-    static moveArrCellForward(arrCells, direction) {
+    static moveArrCellsForward(arrCells, direction) {
         let grown = Utils.growArrCellsForward(arrCells, direction);
         grown.pop();  // remove last
         return grown;
